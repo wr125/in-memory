@@ -5,13 +5,13 @@ import (
 	"sort"
 )
 
-//Countie is a simple map
-type Countie struct {
+//County is a simple map
+type County struct {
 	Borough map[string][]string
 }
 
 //List returns map list
-func (c Countie) List() {
+func (c County) List() {
 	for i, v := range c.Borough {
 		val := append(v, "Lewisham")
 		sort.Strings(val)
@@ -20,7 +20,7 @@ func (c Countie) List() {
 }
 
 //Add add's new map as list
-func (c Countie) Add(borough string, values ...string) {
+func (c County) Add(borough string, values ...string) {
 	old, ok := c.Borough[borough]
 
 	if ok {
@@ -31,7 +31,7 @@ func (c Countie) Add(borough string, values ...string) {
 }
 
 //Delete removes item from map
-func (c Countie) Delete(borough string, value string) {
+func (c County) Delete(borough string, value string) {
 	old, ok := c.Borough[borough]
 
 	if ok {
@@ -47,10 +47,9 @@ func (c Countie) Delete(borough string, value string) {
 }
 
 func main() {
-	countie := Countie{Borough: map[string][]string{"London": {"Bexley", "Catford", "Camberwell"}}}
-	countie.List()
-	countie.Delete("London", "Catford")
-	countie.Add("Kent", "Dover", "Canterbury", "Maidstone")
-
-	countie.List()
+	county := County{Borough: map[string][]string{"London": {"Bexley", "Catford", "Camberwell"}}}
+	county.List()
+	county.Delete("London", "Catford")
+	county.Add("Kent", "Dover", "Canterbury", "Maidstone")
+	county.List()
 }
